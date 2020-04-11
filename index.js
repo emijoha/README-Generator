@@ -1,12 +1,27 @@
-const questions = [
+// dependencies
+const inquirer = require("inquirer");
+const fs = require("fs");
+const util = require("util");
 
-];
 
-function writeToFile(fileName, data) {
-}
+// required js file modules
+const getUser = require("./utils/api");
+const generateMarkdown = require("./utils/generateMarkdown");
 
-function init() {
+getUser();
 
-}
+// // making writeToFile a promise
+// const writeToFile = util.promisify(fs.writeFile);
 
-init();
+// const questions = [
+
+// ];
+
+// function writeToFile(fileName, data) {
+// }
+
+// function init() {
+
+// }
+
+// init();
