@@ -1,11 +1,12 @@
 // dependencies for this module
 const fs = require("fs");
-// const util = require("util");
 const axios = require("axios");
 const inquirer = require("inquirer");
 
 async function getUser() {
+
   try {
+
     // wait for username input to be given and store in variable
     const { username } = await inquirer.prompt({
       type: "input",
@@ -27,6 +28,7 @@ async function getUser() {
       gitPage: data.html_url,
       gitFollowers: data.followers
     };
+
     // stringify the object for use in json file
     const gitInfoJSON = JSON.stringify(gitInfo, null, 2);
 
@@ -36,11 +38,11 @@ async function getUser() {
       }
     });
 
-    // catch any axios errors
   } catch (err) {
     console.log(err);
-    console.log("TIP: check your spelling")
+    console.log("TIP: check your spelling");
   }
+
 };
 
 // export getUser function

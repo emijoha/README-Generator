@@ -33,13 +33,13 @@ const questions = [
         type: "input",
         name: "installation",
         message: "What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.",
-        default: "1. Clone this repo \n 2. Open the repo locally \n 3. Open terminal and run 'npm install' in the main directory \n 4. Run 'node index' \n 5. Answer prompts in the CLI"
+        default: "\n  1. Clone this repo \n  2. Open the repo locally \n  3. Open terminal and run 'npm install' in the main directory \n  4. Run 'node index' \n  5. Answer prompts in the CLI"
     },
     {
         type: "input",
         name: "usage",
         message: "Provide instructions and examples for use.",
-        default: "When developing a new project, use this CLI application to automatically generate a well-structured README. Save time and effort! \n Simply answer the prompts in the CLI and copy the generate README.md into your project repo."
+        default: "When developing a new project, use this CLI application to automatically generate a well-structured README. Save time and effort! Simply answer the prompts in the CLI and copy the generate README.md into your project repo."
     },
     {
         type: "input",
@@ -51,7 +51,7 @@ const questions = [
         type: "input",
         name: "contributing",
         message: "Write a message for either welcoming or postponing contributions to your project:",
-        default: "Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. \n Please make sure to update tests as appropriate."
+        default: "Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. Please make sure to update tests as appropriate."
     },
     {
         type: "input",
@@ -76,6 +76,7 @@ const questions = [
 
 // function to get user inputs
 async function getInput() {
+
     try {
         // wait for user input
         const data = await inquirer.prompt(questions);
@@ -90,7 +91,8 @@ async function getInput() {
         });
     } catch (err) {
         console.log(err);
-    }
+    };
+
 };
 
 // export 

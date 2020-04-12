@@ -18,16 +18,16 @@
 
   ## Installation
 
+  
   1. Clone this repo 
- 2. Open the repo locally 
- 3. Open terminal and run 'npm install' in the main directory 
- 4. Run 'node index' 
- 5. Answer prompts in the CLI
+  2. Open the repo locally 
+  3. Open terminal and run 'npm install' in the main directory 
+  4. Run 'node index' 
+  5. Answer prompts in the CLI
 
   ## Usage
 
-  When developing a new project, use this CLI application to automatically generate a well-structured README. Save time and effort! 
- Simply answer the prompts in the CLI and copy the generate README.md into your project repo.
+  When developing a new project, use this CLI application to automatically generate a well-structured README. Save time and effort! Simply answer the prompts in the CLI and copy the generate README.md into your project repo.
 
   ## License
 
@@ -36,8 +36,7 @@
 
   ## Contributing
 
-  Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. 
- Please make sure to update tests as appropriate.
+  Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. Please make sure to update tests as appropriate.
 
   ## Tests
 

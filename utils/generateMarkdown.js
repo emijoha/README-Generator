@@ -28,6 +28,7 @@ async function generateMarkdown() {
   let email;
 
   try {
+
     // wait for gitInfo file to be read
     await readFileAsync("./utils/gitInfo.json", "utf8")
     .then(data => {
@@ -65,6 +66,7 @@ async function generateMarkdown() {
       };
   
     });
+
   } catch (err) {
     console.log(err);
   };
@@ -128,4 +130,5 @@ async function generateMarkdown() {
 
 };
 
+// export
 module.exports = generateMarkdown;
