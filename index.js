@@ -6,23 +6,22 @@ const util = require("util");
 
 // required js file modules
 const getUser = require("./utils/getUser");
-const generateMarkdown = require("./utils/generateMarkdown");
+// const generateMarkdown = require("./utils/generateMarkdown");
+const getInput = require("./utils/getInput");
 
-getUser();
+async function init() {
+    // wait for getUser to finish
+    try {
+        await getUser();
+    } catch (err) {
+        console.log(err);
+    };
+    // then run getInput
+    getInput();
 
+    // then generate README.md
+    // generateMarkdown();
+};
 
-// // making writeToFile a promise
-// const writeToFile = util.promisify(fs.writeFile);
-
-// const questions = [
-
-// ];
-
-// function writeToFile(fileName, data) {
-// }
-
-// function init() {
-
-// }
-
-// init();
+// initialize CLI
+init();

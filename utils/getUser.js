@@ -1,5 +1,6 @@
 // dependencies for this module
 const fs = require("fs");
+// const util = require("util");
 const axios = require("axios");
 const inquirer = require("inquirer");
 
@@ -18,7 +19,7 @@ async function getUser() {
       `https://api.github.com/users/${username}`
     );
 
-    // store needed github user info in object variable
+    // store needed github user info from data in new object variable
     const gitInfo = {
       legalName: data.name,
       imageUrl: data.avatar_url,
@@ -28,12 +29,10 @@ async function getUser() {
     // stringify the object for use in json file
     const gitInfoJSON = JSON.stringify(gitInfo, null, 2);
 
-    fs.writeFile("gitInfo.json", gitInfoJSON, function(err) {
+    fs.writeFile("./utils/gitInfo.json", gitInfoJSON, function(err) {
       if (err) {
         throw err;
       }
-      // if no error, confirm that file was written
-      console.log("gitInfo.json written!")
     });
   
   // catch any axios errors
