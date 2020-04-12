@@ -12,16 +12,6 @@ let imageUrl;
 let gitPage;
 let gitFollowers;
 
-readFileAsync("gitInfo.json", "utf8")
-.then(data => {
-  const gitInfo = JSON.parse(data);
-  userName = gitInfo.userName;
-  legalName = gitInfo.legalName;
-  imageUrl = gitInfo.imageUrl;
-  gitPage = gitInfo.gitPage;
-  gitFollowers = gitInfo.gitFollowers;
-});
-
 // set variables for needed INPUT data
 let projectTitle;
 let year;
@@ -36,30 +26,47 @@ let questionsText;
 let maintainedBadgeUrl;
 let email;
 
-readFileAsync("inputData.json", "utf8")
-.then(data => {
-  const inputs = JSON.parse(data);
-  projectTitle = inputs.title;
-  year = inputs.year;
-  isMaintained = inputs.isMaintained;
-  descriptionText = inputs.description;
-  installationText = inputs.installation;
-  usageText = inputs.usage;
-  licenseText = inputs.license;
-  contributingText = inputs.contributing;
-  testText = inputs.tests;
-  questionsText = inputs.questionsMessage;
-  email = inputs.email;
+function generateMarkdown() {
 
-  if (isMaintained === true) {
-    maintainedBadgeUrl = "https://img.shields.io/badge/Maintained%3F-yes-green.svg";
-  } else {
-    maintainedBadgeUrl = "https://img.shields.io/badge/Maintained%3F-no-red.svg";
-  }
-});
+  // read and retrieve user data values
+  readFileAsync("./utils/gitInfo.json", "utf8")
+  .then(data => {
 
-function generateMarkdown(data) {
-  return ` 
+    const gitInfo = JSON.parse(data);
+    userName = gitInfo.userName;
+    legalName = gitInfo.legalName;
+    imageUrl = gitInfo.imageUrl;
+    gitPage = gitInfo.gitPage;
+    gitFollowers = gitInfo.gitFollowers;
+
+  });
+
+  // read and retieve input data values
+  readFileAsync("./utils/inputData.json", "utf8")
+  .then(data => {
+
+    const inputs = JSON.parse(data);
+    projectTitle = inputs.title;
+    year = inputs.year;
+    isMaintained = inputs.isMaintained;
+    descriptionText = inputs.description;
+    installationText = inputs.installation;
+    usageText = inputs.usage;
+    licenseText = inputs.license;
+    contributingText = inputs.contributing;
+    testText = inputs.tests;
+    questionsText = inputs.questionsMessage;
+    email = inputs.email;
+
+    if (isMaintained === true) {
+      maintainedBadgeUrl = "https://img.shields.io/badge/Maintained%3F-yes-green.svg";
+    } else {
+        maintainedBadgeUrl = "https://img.shields.io/badge/Maintained%3F-no-red.svg";
+    }
+
+  });
+
+  let markdown = ` 
   # ${projectTitle}
 
   [![Maintained Badge](${maintainedBadgeUrl})](${gitPage})
@@ -103,10 +110,17 @@ function generateMarkdown(data) {
   ${questionsText}
 
   \n![Image of ${legalName}](${imageUrl})
-  \n${email}
+  \n**${email}**
   \nFind ${legalName} on GitHub as ${userName}. 
   [![Followers Badge](https://img.shields.io/badge/Followers-${gitFollowers}-yellow)](${gitPage})
   `;
-}
+
+  fs.writeFile("README.md", markdown, err => {
+    if (err) {
+      throw err;
+    }
+  });
+  
+};
 
 module.exports = generateMarkdown;

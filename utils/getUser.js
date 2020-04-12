@@ -21,6 +21,7 @@ async function getUser() {
 
     // store needed github user info from data in new object variable
     const gitInfo = {
+      userName: username,
       legalName: data.name,
       imageUrl: data.avatar_url,
       gitPage: data.html_url,
@@ -29,13 +30,13 @@ async function getUser() {
     // stringify the object for use in json file
     const gitInfoJSON = JSON.stringify(gitInfo, null, 2);
 
-    fs.writeFile("./utils/gitInfo.json", gitInfoJSON, function(err) {
+    fs.writeFile("./utils/gitInfo.json", gitInfoJSON, function (err) {
       if (err) {
         throw err;
       }
     });
-  
-  // catch any axios errors
+
+    // catch any axios errors
   } catch (err) {
     console.log(err);
     console.log("TIP: check your spelling")

@@ -1,7 +1,6 @@
 // dependencies
 const inquirer = require("inquirer");
 const fs = require("fs");
-// const util = require("util");
 
 // question objects array
 const questions = [
@@ -84,7 +83,7 @@ async function getInput() {
         // data is an object. stringify for file writing
         const dataJSON = JSON.stringify(data, null, 2);
         // and write file
-        fs.writeFile("./utils/inputData.json", dataJSON, function(err) {
+        fs.writeFile("./utils/inputData.json", dataJSON, function (err) {
             if (err) {
                 throw err;
             }
