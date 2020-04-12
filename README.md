@@ -32,6 +32,7 @@
   ## License
 
   MIT
+
   Copyright 2020 E.J.Hartline.
 
   ## Contributing
@@ -47,7 +48,8 @@
   Feel free to contact us with any questions regarding this project!
 
   ![Image of E.J.Hartline](https://avatars0.githubusercontent.com/u/60240293?v=4)
-  **ejhartline@gmail.com**
-  Find E.J.Hartline on GitHub as emijoha. 
+  
   [![Followers Badge](https://img.shields.io/badge/Followers-2-yellow)](https://github.com/emijoha)
+
+  Email E.J.Hartline at ejhartline@gmail.com 
   

@@ -101,6 +101,7 @@ async function generateMarkdown() {
   ## License
 
   ${licenseText}
+
   Copyright ${year} ${legalName}.
 
   ## Contributing
@@ -116,9 +117,10 @@ async function generateMarkdown() {
   ${questionsText}
 
   ![Image of ${legalName}](${imageUrl})
-  **${email}**
-  Find ${legalName} on GitHub as ${userName}. 
+  
   [![Followers Badge](https://img.shields.io/badge/Followers-${gitFollowers}-yellow)](${gitPage})
+
+  Email ${legalName} at ${email} 
   `;
 
   // write file using markdown content
