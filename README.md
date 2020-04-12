@@ -5,7 +5,7 @@
 
   ## Description
 
-  This file was generated using a CLI application that uses imput from prompts to automatically generate your starting README.
+  This file was generated using a CLI application that uses prompt inputs to automatically generate your starting README.
   
   ## Table of Contents
 
@@ -18,22 +18,23 @@
 
   ## Installation
 
-  
   1. Clone this repo 
   2. Open the repo locally 
-  3. Open terminal and run 'npm install' in the main directory 
-  4. Run 'node index' 
-  5. Answer prompts in the CLI
+  3. Open terminal in the main directory and run 'npm install'
 
   ## Usage
 
-  When developing a new project, use this CLI application to automatically generate a well-structured README. Save time and effort! Simply answer the prompts in the CLI and copy the generate README.md into your project repo.
+When developing a new project, use this CLI application to automatically generate a well-structured README, saving you time and       effort!  
+
+ 1. Open terminal in the main directory.
+ 2. Run 'node index'
+ 3. Answer the prompts in the command line
+ 4. A file named README.md will be generated when all prompts are answered
+ 5. Copy the generated README.md into the intended project repository.
 
   ## License
 
   MIT
-
-  Copyright 2020 E.J.Hartline.
 
   ## Contributing
 
