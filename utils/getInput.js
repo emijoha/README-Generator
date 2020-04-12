@@ -11,6 +11,12 @@ const questions = [
         message: "What is the title of your project?",
         default: "README Generator"
     },
+    {
+        type: "input",
+        name: "year",
+        message: "What year did you create this project repo?",
+        default: "2020"
+    },
     // will determine if "maintained" badge is added
     {
         type: "confirm",
@@ -36,19 +42,17 @@ const questions = [
         message: "Provide instructions and examples for use.",
         default: "When developing a new project, use this CLI application to automatically generate a well-structured README. Save time and effort! \n Simply answer the prompts in the CLI and copy the generate README.md into your project repo."
     },
-    // will determine what license message will be passed in readme markdown
     {
-        type: "confirm",
+        type: "input",
         name: "license",
-        message: "Would you like to add a MIT license to your project?",
-        default: true
+        message: "Let your reader know what (if any) license has been applied to your project.",
+        default: "MIT"
     },
-    // will determine what contributing message will be passed in readme markdown
     {
-        type: "confirm",
-        name: "isContributing",
-        message: "Are you open to contributions?",
-        default: true
+        type: "input",
+        name: "contributing",
+        message: "Write a message for either welcoming or postponing contributions to your project:",
+        default: "Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. \n Please make sure to update tests as appropriate."
     },
     {
         type: "input",
@@ -62,6 +66,12 @@ const questions = [
         name: "questionsMessage",
         message: "Write a message inviting readers to ask questions about your project:",
         default: "Feel free to contact us with any questions regarding this project!"
+    },
+    {
+        type: "input",
+        name: "email",
+        message: "Enter you email for contact info:",
+        default: "example@gmail.com"
     }
 ];
 

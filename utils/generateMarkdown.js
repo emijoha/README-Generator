@@ -6,6 +6,7 @@ const util = require("util");
 const readFileAsync = util.promisify(fs.readFile);
 
 // set variables for needed USER data
+let userName;
 let legalName;
 let imageUrl;
 let gitPage;
@@ -14,6 +15,7 @@ let gitFollowers;
 readFileAsync("gitInfo.json", "utf8")
 .then(data => {
   const gitInfo = JSON.parse(data);
+  userName = gitInfo.userName;
   legalName = gitInfo.legalName;
   imageUrl = gitInfo.imageUrl;
   gitPage = gitInfo.gitPage;
@@ -22,34 +24,45 @@ readFileAsync("gitInfo.json", "utf8")
 
 // set variables for needed INPUT data
 let projectTitle;
+let year;
 let isMaintained;
 let descriptionText;
 let installationText;
 let usageText;
-let license;
-let isContributing;
+let licenseText;
+let contributingText;
 let testText;
 let questionsText;
+let maintainedBadgeUrl;
+let email;
 
 readFileAsync("inputData.json", "utf8")
 .then(data => {
   const inputs = JSON.parse(data);
-  projectTitle = imputs.title;
+  projectTitle = inputs.title;
+  year = inputs.year;
   isMaintained = inputs.isMaintained;
   descriptionText = inputs.description;
   installationText = inputs.installation;
   usageText = inputs.usage;
-  license = inputs.license;
-  isContributing = inputs.isContributing;
+  licenseText = inputs.license;
+  contributingText = inputs.contributing;
   testText = inputs.tests;
   questionsText = inputs.questionsMessage;
+  email = inputs.email;
+
+  if (isMaintained === true) {
+    maintainedBadgeUrl = "https://img.shields.io/badge/Maintained%3F-yes-green.svg";
+  } else {
+    maintainedBadgeUrl = "https://img.shields.io/badge/Maintained%3F-no-red.svg";
+  }
 });
 
 function generateMarkdown(data) {
   return ` 
   # ${projectTitle}
 
-  // badges
+  [![Maintained Badge](${maintainedBadgeUrl})](${gitPage})
 
   ## Description
 
@@ -74,11 +87,12 @@ function generateMarkdown(data) {
 
   ## License
 
-  ${data.license}
+  ${licenseText}
+  \nCopyright 2020 ${legalName}.
 
   ## Contributing
 
-  // check if isContributing to determine content
+  ${contributingText}
 
   ## Tests
 
@@ -88,10 +102,10 @@ function generateMarkdown(data) {
 
   ${questionsText}
 
-  // pic and name with link
-  ${legalName}
-  // followers badge
-
+  \n![Image of ${legalName}](${imageUrl})
+  \n${email}
+  \nFind ${legalName} on GitHub as ${userName}. 
+  [![Followers Badge](https://img.shields.io/badge/Followers-${gitFollowers}-yellow)](${gitPage})
   `;
 }
 
