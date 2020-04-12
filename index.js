@@ -14,7 +14,7 @@ async function init() {
     try {
         await getUser();
         await getInput();
-        await generateMarkdown();
+        generateMarkdown();
     } catch (err) {
         console.log(err);
     };

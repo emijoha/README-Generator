@@ -2,70 +2,74 @@
 const fs = require("fs");
 const util = require("util");
 
-// promisify the readFile method 
-const readFileAsync = util.promisify(fs.readFile);
+async function generateMarkdown() {
 
-// set variables for needed USER data
-let userName;
-let legalName;
-let imageUrl;
-let gitPage;
-let gitFollowers;
+  // promisify the readFile method 
+  const readFileAsync = util.promisify(fs.readFile);
 
-// set variables for needed INPUT data
-let projectTitle;
-let year;
-let isMaintained;
-let descriptionText;
-let installationText;
-let usageText;
-let licenseText;
-let contributingText;
-let testText;
-let questionsText;
-let maintainedBadgeUrl;
-let email;
+  // set variables for needed USER data
+  let userName;
+  let legalName;
+  let imageUrl;
+  let gitPage;
+  let gitFollowers;
+  // set variables for needed INPUT data
+  let projectTitle;
+  let year;
+  let isMaintained;
+  let descriptionText;
+  let installationText;
+  let usageText;
+  let licenseText;
+  let contributingText;
+  let testText;
+  let questionsText;
+  let maintainedBadgeUrl;
+  let email;
 
-function generateMarkdown() {
+  try {
+    // wait for gitInfo file to be read
+    await readFileAsync("./utils/gitInfo.json", "utf8")
+    .then(data => {
+  
+      const gitInfo = JSON.parse(data);
+      userName = gitInfo.userName;
+      legalName = gitInfo.legalName;
+      imageUrl = gitInfo.imageUrl;
+      gitPage = gitInfo.gitPage;
+      gitFollowers = gitInfo.gitFollowers;
+  
+    });
 
-  // read and retrieve user data values
-  readFileAsync("./utils/gitInfo.json", "utf8")
-  .then(data => {
-
-    const gitInfo = JSON.parse(data);
-    userName = gitInfo.userName;
-    legalName = gitInfo.legalName;
-    imageUrl = gitInfo.imageUrl;
-    gitPage = gitInfo.gitPage;
-    gitFollowers = gitInfo.gitFollowers;
-
-  });
-
-  // read and retieve input data values
-  readFileAsync("./utils/inputData.json", "utf8")
-  .then(data => {
-
-    const inputs = JSON.parse(data);
-    projectTitle = inputs.title;
-    year = inputs.year;
-    isMaintained = inputs.isMaintained;
-    descriptionText = inputs.description;
-    installationText = inputs.installation;
-    usageText = inputs.usage;
-    licenseText = inputs.license;
-    contributingText = inputs.contributing;
-    testText = inputs.tests;
-    questionsText = inputs.questionsMessage;
-    email = inputs.email;
-
-    if (isMaintained === true) {
-      maintainedBadgeUrl = "https://img.shields.io/badge/Maintained%3F-yes-green.svg";
-    } else {
+    // wait for inputData file to be read
+    await readFileAsync("./utils/inputData.json", "utf8")
+    .then(response => {
+  
+      const inputs = JSON.parse(response);
+      projectTitle = inputs.title;
+      year = inputs.year;
+      isMaintained = inputs.isMaintained;
+      descriptionText = inputs.description;
+      installationText = inputs.installation;
+      usageText = inputs.usage;
+      licenseText = inputs.license;
+      contributingText = inputs.contributing;
+      testText = inputs.tests;
+      questionsText = inputs.questionsMessage;
+      email = inputs.email;
+  
+      if (isMaintained === true) {
+        maintainedBadgeUrl = "https://img.shields.io/badge/Maintained%3F-yes-green.svg";
+      } else {
         maintainedBadgeUrl = "https://img.shields.io/badge/Maintained%3F-no-red.svg";
-    }
+      };
+  
+    });
+  } catch (err) {
+    console.log(err);
+  };
 
-  });
-
+  // Build README markdown
   let markdown = ` 
   # ${projectTitle}
 
@@ -95,7 +99,7 @@ function generateMarkdown() {
   ## License
 
   ${licenseText}
-  \nCopyright 2020 ${legalName}.
+  Copyright ${year} ${legalName}.
 
   ## Contributing
 
@@ -109,18 +113,19 @@ function generateMarkdown() {
 
   ${questionsText}
 
-  \n![Image of ${legalName}](${imageUrl})
-  \n**${email}**
-  \nFind ${legalName} on GitHub as ${userName}. 
+  ![Image of ${legalName}](${imageUrl})
+  **${email}**
+  Find ${legalName} on GitHub as ${userName}. 
   [![Followers Badge](https://img.shields.io/badge/Followers-${gitFollowers}-yellow)](${gitPage})
   `;
 
+  // write file using markdown content
   fs.writeFile("README.md", markdown, err => {
     if (err) {
       throw err;
     }
   });
-  
+
 };
 
 module.exports = generateMarkdown;
