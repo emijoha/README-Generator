@@ -30,7 +30,7 @@ async function generateMarkdown() {
   try {
 
     // wait for gitInfo file to be read
-    await readFileAsync("./utils/gitInfo.json", "utf8")
+    await readFileAsync("./utils/gitHubInfo.json", "utf8")
     .then(data => {
   
       const gitInfo = JSON.parse(data);

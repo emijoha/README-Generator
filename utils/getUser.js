@@ -32,7 +32,7 @@ async function getUser() {
     // stringify the object for use in json file
     const gitInfoJSON = JSON.stringify(gitInfo, null, 2);
 
-    fs.writeFile("./utils/gitInfo.json", gitInfoJSON, function (err) {
+    fs.writeFile("./utils/gitHubInfo.json", gitInfoJSON, function (err) {
       if (err) {
         throw err;
       }
