@@ -1,0 +1,13 @@
+{
+  "title": "Exercise Tracker",
+  "year": "2020",
+  "isMaintained": true,
+  "description": "An fitness tracker that allows users to create and update their daily workouts with resistance and cardio exercises. Users can view the statistics for all workouts they have logged.",
+  "installation": "1. Clone this repo\n2. Open the repo locally\n3. Open terminal in main directory and run 'npm install'.",
+  "usage": "When developing a new project, use this CLI application to automatically generate a well-structured README. Save time and effort!\n1. Open terminal in main directory\n2. Run 'node index'\n3. Answer the prompts in the command line\n4. Copy the generated README into your intended project repo",
+  "license": "MIT License",
+  "contributing": "Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. Please make sure to update tests as appropriate.",
+  "tests": "No tests currently.",
+  "questionsMessage": "Feel free to contact us with any questions regarding this project!",
+  "email": "ejhartline@gmail.com"
+}

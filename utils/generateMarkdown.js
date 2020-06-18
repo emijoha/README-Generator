@@ -116,7 +116,7 @@ async function generateMarkdown() {
 
   ${questionsText}
 
-  ![Image of ${legalName}](${imageUrl})
+  <img src="${imageUrl}" alt="${legalName}" width="250"/>
   
   [![Followers Badge](https://img.shields.io/badge/Followers-${gitFollowers}-yellow)](${gitPage})
 
